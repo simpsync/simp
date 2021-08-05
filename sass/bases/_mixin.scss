@@ -1,0 +1,98 @@
+// COLORS
+// @include cl(black);
+//--------------------------------------------------
+
+$colors: (
+  white: #fff,
+  black: #000,
+);
+
+@function cl($key) {
+  @return map-get($colors, $key);
+}
+
+// FONT
+// @include TimesNewRoman;
+//--------------------------------------------------
+
+@mixin TimesNewRoman {
+}
+
+// RESPONSIVE
+// @include overSP
+// 画面サイズが480pxからはここを読み込む
+// @include overTab
+// 画面サイズが768pxから1250pxはここを読み込む
+// @include overTab-PC
+// 画面サイズが1250px以上はここを読み込む
+//--------------------------------------------------
+
+// @mixin overSP {
+// 	@media screen and (min-width: 480px) {
+// 		@content;
+// 	}
+// }
+@mixin overTab {
+  @media print, screen and (min-width: 768px) and (max-width: 1250px) {
+    @content;
+  }
+}
+@mixin overTab-PC {
+  @media print, screen and (min-width: 1250px) {
+    @content;
+  }
+}
+
+// UTILITY
+//--------------------------------------------------
+
+._sp {
+  @include overTab {
+    display: none;
+  }
+  @include overTab-PC {
+    display: none;
+  }
+}
+
+._tab {
+  display: none;
+  @include overTab {
+    display: block;
+  }
+  @include overTab-PC {
+    display: none;
+  }
+}
+
+._pc {
+  display: none;
+  @include overTab {
+    display: block;
+  }
+  @include overTab-PC {
+    display: block;
+  }
+}
+
+//SPだけ隠す//
+.hidden-sp {
+  display: none;
+  @include overTab {
+    display: block;
+  }
+  @include overTab-PC {
+    display: block;
+  }
+}
+
+//TabとPCは隠す...ならんやん//
+.hidden-tab {
+  display: block;
+  @include overTab {
+    display: none;
+  }
+  @include overTab-PC {
+    display: none;
+  }
+}
